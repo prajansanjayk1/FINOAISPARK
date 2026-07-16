@@ -1,0 +1,14 @@
+fastapi>=0.111.0
+uvicorn[standard]>=0.30.1
+pydantic>=2.9.0
+pydantic-settings>=2.3.4
+sqlalchemy[asyncio]>=2.0.31
+asyncpg>=0.30.0
+argon2-cffi>=23.1.0
+pyjwt[crypto]>=2.8.0
+redis>=5.0.7
+prometheus-client>=0.20.0
+pytest>=8.2.2
+pytest-asyncio>=0.23.7
+httpx>=0.27.0
+websockets>=12.0

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS ONE — AI Governance Layer</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/index.css">
+</head>
+<body>
+    <div class="glow-bg"></div>
+    <header class="app-header">
+        <div class="header-logo">
+            <h1 class="glitch-text" data-text="NEXUS ONE">NEXUS ONE</h1>
+            <span class="logo-sub">Autonomous AI Governance Layer for Privileged Banking Operations</span>
+        </div>
+        <div class="header-status">
+            <span class="status-indicator pulsing"></span>
+            <span class="status-text">SECURE INTERCEPTOR ACTIVE</span>
+        </div>
+    </header>
+
+    <main class="dashboard-grid">
+        <!-- LEFT: Control Room (Scenarios & Input) -->
+        <section class="panel glass control-room">
+            <div class="panel-header">
+                <h2>Control Room</h2>
+                <span class="badge">PAM GATEWAY MOCK</span>
+            </div>
+            
+            <div class="control-group">
+                <label for="scenario-select">Load Preset Scenario</label>
+                <select id="scenario-select" class="custom-select">
+                    <option value="routine_dba">Scenario A: Routine Database Query (Compliant DBA)</option>
+                    <option value="untrusted_offhours">Scenario B: Untrusted Workstation Off-Hours Access</option>
+                    <option value="malicious_drop">Scenario C: Rogue Admin Deleting Production Database</option>
+                    <option value="unscheduled_restart">Scenario D: Emergency Core DB Restart (Incident Response)</option>
+                </select>
+            </div>
+
+            <div class="control-group json-editor-group">
+                <div class="editor-header">
+                    <span>Request Envelope (JSON)</span>
+                    <button id="format-json-btn" class="text-btn">Format</button>
+                </div>
+                <textarea id="request-editor" spellcheck="false" class="code-editor"></textarea>
+            </div>
+
+            <button id="evaluate-btn" class="primary-btn glow-btn">
+                <span>DELIBERATE & EVALUATE REQUEST</span>
+            </button>
+        </section>
+
+        <!-- CENTER: Governance Journey & Deliberation Engine -->
+        <section class="center-column">
+            <!-- Governance Journey (Timeline Progress) -->
+            <div class="panel glass journey-panel">
+                <div class="panel-header">
+                    <h2>Governance Journey</h2>
+                    <span class="sub-header-details">Chronological Interception Process</span>
+                </div>
+                <div class="journey-stepper" id="journey-stepper">
+                    <div class="step inactive" data-step="0"><div class="dot"></div><span class="step-label">Ingestion</span></div>
+                    <div class="step inactive" data-step="1"><div class="dot"></div><span class="step-label">Policy Engine</span></div>
+                    <div class="step inactive" data-step="2"><div class="dot"></div><span class="step-label">Identity Trust</span></div>
+                    <div class="step inactive" data-step="3"><div class="dot"></div><span class="step-label">Behavior check</span></div>
+                    <div class="step inactive" data-step="4"><div class="dot"></div><span class="step-label">Threat Scan</span></div>
+                    <div class="step inactive" data-step="5"><div class="dot"></div><span class="step-label">Business Risk</span></div>
+                    <div class="step inactive" data-step="6"><div class="dot"></div><span class="step-label">Council Debate</span></div>
+                    <div class="step inactive" data-step="7"><div class="dot"></div><span class="step-label">Consensus</span></div>
+                    <div class="step inactive" data-step="8"><div class="dot"></div><span class="step-label">Directives</span></div>
+                </div>
+            </div>
+
+            <!-- Deliberation Engine (Simulated Debate Transcript) -->
+            <div class="panel glass deliberation-panel">
+                <div class="panel-header">
+                    <h2>AI Deliberation Engine</h2>
+                    <span class="badge secondary">COUNCIL CHAT</span>
+                </div>
+                <div class="deliberation-terminal" id="deliberation-terminal">
+                    <div class="terminal-placeholder">Awaiting PAM execution request. Click "Deliberate & Evaluate Request" to begin parallel agent analysis...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RIGHT: Governance Verdict HUD -->
+        <section class="panel glass verdict-hud">
+            <div class="panel-header">
+                <h2>Governance Verdict HUD</h2>
+                <div class="explainability-toggle-bar">
+                    <button id="view-exec-btn" class="view-btn active">Executive View</button>
+                    <button id="view-analyst-btn" class="view-btn">Analyst View</button>
+                </div>
+            </div>
+
+            <!-- Executive Explainability View -->
+            <div id="exec-view-panel" class="explain-subpanel active-panel">
+                <div class="verdict-scoreboard">
+                    <div class="score-card main-decision">
+                        <span class="score-label">ADAPTIVE VERDICT</span>
+                        <h3 id="exec-verdict-decision" class="neutral-text">AWAITING</h3>
+                    </div>
+                </div>
+                
+                <div class="executive-details-card">
+                    <div class="exec-detail-row">
+                        <span class="exec-detail-title">Executive Reason</span>
+                        <p id="exec-reason-val" class="exec-detail-desc">Submit request to view high-level decision summary.</p>
+                    </div>
+                    <div class="exec-detail-row">
+                        <span class="exec-detail-title">Business Service Impact</span>
+                        <p id="exec-impact-val" class="exec-detail-desc">No service blast radius mapped yet.</p>
+                    </div>
+                    <div class="exec-detail-row">
+                        <span class="exec-detail-title">Recommended Action</span>
+                        <p id="exec-action-val" class="exec-detail-desc">Awaiting interceptor evaluation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analyst Deep-Dive View -->
+            <div id="analyst-view-panel" class="explain-subpanel">
+                <div class="verdict-scoreboard">
+                    <div class="score-card">
+                        <span class="score-label">GOVERNANCE CONFIDENCE</span>
+                        <h3 id="analyst-verdict-confidence" class="neutral-text">--%</h3>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-lbl">Council Agreement</span>
+                        <span class="stat-val" id="stat-agreement">-- / --</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-lbl">Identity Trust</span>
+                        <span class="stat-val" id="stat-identity">--</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-lbl">Compliance Status</span>
+                        <span class="stat-val" id="stat-compliance">--</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-lbl">Business Risk</span>
+                        <span class="stat-val" id="stat-risk">--</span>
+                    </div>
+                </div>
+
+                <!-- Governance Memory Pattern Similarity -->
+                <div class="hud-section memory-section">
+                    <h4>Governance Memory Precedent</h4>
+                    <div class="memory-precedent-grid">
+                        <div class="precedent-item">
+                            <span class="prec-lbl">Pattern Similarity</span>
+                            <span class="prec-val" id="prec-similarity">--%</span>
+                        </div>
+                        <div class="precedent-item">
+                            <span class="prec-lbl">Historical Outcome</span>
+                            <span class="prec-val" id="prec-outcome">--% Approved</span>
+                        </div>
+                        <div class="precedent-item">
+                            <span class="prec-lbl">Average Risk</span>
+                            <span class="prec-val" id="prec-risk">--</span>
+                        </div>
+                        <div class="precedent-item">
+                            <span class="prec-lbl">Previous Incident</span>
+                            <span class="prec-val" id="prec-ref">None</span>
+                        </div>
+                    </div>
+                    <div class="memory-insight-box" id="memory-insight-box">
+                        Awaiting evaluation to fetch memory patterns.
+                    </div>
+                </div>
+
+                <!-- Business Impact (Services Grid) -->
+                <div class="hud-section">
+                    <h4>Business Services Impact</h4>
+                    <div class="impact-services-grid" id="impact-services-grid">
+                        <div class="empty-placeholder">No service impact mapped.</div>
+                    </div>
+                </div>
+
+                <!-- Execution Governor Directives -->
+                <div class="hud-section directives-section">
+                    <h4>Execution Governor Directives (PAM Engine)</h4>
+                    <ol class="directives-list" id="directives-list">
+                        <li class="empty-placeholder">Awaiting PAM Verdict...</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="audit-vault-seal" id="audit-badge">SEALED</div>
+        </section>
+    </main>
+
+    <!-- BOTTOM ROW: Counterfactual & Policy Studio -->
+    <section class="bottom-grid">
+        <!-- Counterfactual Analysis -->
+        <div class="panel glass counterfactual-panel">
+            <div class="panel-header">
+                <h2>AI Counterfactual Analysis</h2>
+                <span class="sub-header-details">Hypothetical Scenario Simulation</span>
+            </div>
+            <div class="counterfactual-container" id="counterfactual-container">
+                <div class="empty-placeholder">Submit evaluation request to simulate alternatives.</div>
+            </div>
+        </div>
+
+        <!-- Governance Policy Studio & Simulator -->
+        <div class="panel glass policy-studio">
+            <div class="panel-header">
+                <h2>Governance Policy Studio</h2>
+                <div class="studio-sub-header">
+                    <button id="studio-rules-tab" class="studio-tab-btn active">Active Policies</button>
+                    <button id="studio-sim-tab" class="studio-tab-btn">Simulator</button>
+                </div>
+            </div>
+            
+            <!-- Rules Sub-tab -->
+            <div id="studio-rules-panel" class="studio-panel active-panel">
+                <div class="policies-list" id="policies-list-container">
+                    <!-- Policies will be populated dynamically -->
+                </div>
+                <button id="save-policies-btn" class="primary-btn bottom-studio-btn">Save Active Policies</button>
+            </div>
+            
+            <!-- Simulator Sub-tab -->
+            <div id="studio-sim-panel" class="studio-panel">
+                <div class="simulator-layout">
+                    <div class="sim-editor-column">
+                        <div class="control-group">
+                            <label>Draft Policy Condition</label>
+                            <input type="text" id="sim-condition-input" class="custom-input" placeholder="e.g. user.department == 'Core Banking' and action.criticality == 'CRITICAL'">
+                        </div>
+                        <div class="control-group">
+                            <label>Required Controls</label>
+                            <input type="text" id="sim-controls-input" class="custom-input" placeholder="e.g. ['MFA', 'SCREEN_RECORDING']">
+                        </div>
+                        <button id="simulate-policy-btn" class="secondary-btn">Run Policy Simulation</button>
+                    </div>
+                    <div class="sim-results-column" id="sim-results-box">
+                        <div class="empty-placeholder">Select a draft condition and click Run Simulation.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="/static/index.js"></script>
+</body>
+</html>
